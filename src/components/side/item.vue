@@ -20,7 +20,8 @@
           >
             {{ item.name }}<span v-if="showCount(item)" class="side-menu-count">({{ count(item) }})</span>
           </router-link>
-          <a v-else :href="item.href" :target="item.target">{{ item.name }}<span>{{ count(item) }}</span></a>
+          <a v-else-if="item.href" :href="item.href" :target="item.target" @click.stop="go(item)">{{ item.name }}<span>{{ count(item) }}</span></a>
+          <router-link v-else to="404">{{ item.name }}（未配置）</router-link>
         </span>
       </dd>
     </dt>
@@ -62,6 +63,9 @@ export default {
       if (isEmptyObject(countList)) return false
       if (hasOwn(countList, payload.routerName)) return true
       return false
+    },
+    go(payload) {
+      window.location.href = item.router + item.href
     },
     beforeEnter(el) {
       addClass(el, 'collapse-transition')

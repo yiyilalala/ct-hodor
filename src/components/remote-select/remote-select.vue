@@ -49,13 +49,8 @@
             v-if="level !== '' ? index < level : true"
           ><span :title="$e(item)">{{ $e(item) }}</span></flex-item>
         </flex>
-        <span v-else>{{ line.label }}</span>
+        <span v-else :title="line.label">{{ line.label }}</span>
       </li>
-      <li class="useless"
-        v-for="item in maxItem - 1"
-        :key="item"
-        v-show="(data.length > maxItem) && !bigData"
-      >{{item}}</li>
     </ul>
     <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible" v-if="bigData">
       <li v-if="data.length === 0 && searchName !== ''">{{ loading ? '查询中' : '暂无相关数据' }}</li>
@@ -70,6 +65,7 @@
             v-for="(item, index) in line.label"
             :key="`${item}_${_.randomString(6)}`"
             v-if="level !== '' ? index < level : true"
+            :title="item"
           >{{ $e(item) }}</td>
         </tr>
       </table>
@@ -78,7 +74,7 @@
 </template>
 
 <script>
-import Emitter from '@/mixins/emitter'
+import Emitter from '../../mixins/emitter'
 import formChild from '../../mixins/form-child'
 
 export default {
@@ -215,23 +211,23 @@ export default {
       this.searchName = ''
     },
     handleClick(payload) {
-      payload = this._.clone(payload)
-      this.currentValue = payload.value
-      if (this._.isArray(payload.label)) {
+      const item = this._.clone(payload)
+      this.currentValue = item.value
+      if (this._.isArray(item.label)) {
         if (this.level === '') {
-          this.label = payload.label[0]
+          this.label = item.label[0]
         } else {
-          this.label = payload.label
+          this.label = item.label
             .filter(item => { if (item !== '') return item })
             .slice(0, this.level).toString().replace(/,/g, this.dot)
         }
       } else {
-        this.label = payload.label
+        this.label = item.label
       }
       // 增加text用于select的时候直接获取需要的文本
-      payload.text = this.label
+      item.text = this.label
 
-      this.$emit('select', payload)
+      this.$emit('select', item)
       this.hideList()
     },
     appendModal() {
@@ -266,6 +262,7 @@ export default {
   },
   beforeDestroy() {
     try {
+      this.label = ''
       this.removeModal()
     } catch (error) {
       (() => {})()

@@ -1,6 +1,6 @@
 // 通知
 const ctNotification = require('./components/notification').default
-const warpper = require('./components/warpper.vue')
+const warpper = require('./components/warpper.vue').default
 const ctInput = require('./components/input').default
 const ctTag = require('./components/tag').default
 
@@ -9,24 +9,25 @@ const { ctButton, ctButtonGroup } = require('./components/button')
 const { ctSelect, ctOption } = require('./components/select')
 const { ctCheckbox, ctCheckboxGroup } = require('./components/checkbox')
 const { ctTable, ctTableColumn } = require('./components/table')
-const ctLoading = require('./components/normal/ctLoading.vue')
+const ctLoading = require('./components/normal/ctLoading.vue').default
 const ctTimePicker = require('./components/time-picker').default
 const ctDatePicker = require('./components/date-picker').default
 const ctBar = require('./components/bar').default
 const SingleSelect = require('./components/single-select').default
 const RemoteSelect = require('./components/remote-select').default
+const FilterSelect = require('./components/filter-select').default
 
 const { SingleBlock, MultiBlock } = require('./components/block')
 
 const ctPopover = require('./components/popover').default
 const ctDialog = require('./components/dialog').default
 
-const pageLoading = require('./components/pageLoading.vue')
+const pageLoading = require('./components/pageLoading.vue').default
 const tree = require('./components/tree').default
 
 // iconFont
-const iconFont = require('./components/normal/iconFont.vue')
-const faFont = require('./components/normal/faFont.vue')
+const iconFont = require('./components/normal/iconFont.vue').default
+const faFont = require('./components/normal/faFont.vue').default
 
 const { ctForm, ctFormLine } = require('./components/form')
 const { ctFormSearch, ctFormSearchLine } = require('./components/form-search')
@@ -43,23 +44,23 @@ const ctFilterbar = require('./components/filterbar').default
 const ctSide = require('./components/side').default
 const ctCard = require('./components/card').default
 
-const ctSpin = require('./components/spin')
+const ctSpin = require('./components/spin').default
 
-const popup = require('./components/popup')
-const ctPoptip = require('./components/poptip')
+const popup = require('./components/popup').default
+const ctPoptip = require('./components/poptip').default
 
-const ctSwitch = require('./components/switch')
+const ctSwitch = require('./components/switch').default
 
 const { ctTabs, ctTabPane } = require('./components/tabs')
 
-const multiSelect = require('./components/multi-select')
-const listCard = require('./components/list-card')
+const multiSelect = require('./components/multi-select').default
+const listCard = require('./components/list-card').default
 
-const ctDivider = require('./components/divider')
+const ctDivider = require('./components/divider').default
 
-const treeSelect = require('./components/tree-select')
+const treeSelect = require('./components/tree-select').default
 
-const spinner = require('./components/spinner')
+const spinner = require('./components/spinner').default
 
 const components = {
   iconFont,
@@ -81,6 +82,7 @@ const components = {
   ctBar,
   SingleSelect,
   RemoteSelect,
+  FilterSelect,
   SingleBlock,
   MultiBlock,
   ctPopover,

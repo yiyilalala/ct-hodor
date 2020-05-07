@@ -33,7 +33,7 @@
       <section :style="{ width: bodyWidth }" class="ct-table-empty" v-if="(!data || data.length === 0) && !loading">
         <div class="ct-table-empty-text relative text-center">
           <slot name="empty">
-            <img src="../../assets/img/empty_state.jpg" alt="empty_state" v-if="!noEmptyPic">
+            <div class="empty__img" />
             <div>{{ emptyText }}</div>
           </slot>
         </div>
@@ -174,6 +174,8 @@ import {
   removeResizeListener,
 } from 'ct-util'
 
+import ctLoading from '../normal/ctLoading'
+
 import TableStore from './store'
 import ctTableHeader from './head'
 import ctTableBody from './body'
@@ -188,6 +190,7 @@ export default {
     ctTableHeader,
     ctTableBody,
     ctTableFooter,
+    ctLoading,
   },
   props: {
     // 传入的列表数据
